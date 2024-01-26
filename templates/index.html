@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>屁股的爸爸们「幻兽帕鲁」</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/bulma/0.9.4/css/bulma.min.css" rel="stylesheet">
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <h1 class="title">
+            {{ .hi }}
+        </h1>
+        <article class="message is-success">
+            <div class="message-header">
+                <div class="tags has-addons">
+                    <span class="tag">当前服务器地址</span>
+                    <span class="tag is-primary">建议使用</span>
+                </div>
+            </div>
+            <div class="message-body">
+                <strong>{{ .ip }}:{{ .port }}</strong>
+            </div>
+        </article>
+        <div class="box">
+            <blockquote>或使用</blockquote>
+            <strong>nas.liasica.com:8211</strong>
+        </div>
+    </div>
+</section>
+</body>
+</html>
