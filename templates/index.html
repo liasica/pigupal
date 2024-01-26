@@ -13,20 +13,22 @@
         <h1 class="title">
             {{ .hi }}
         </h1>
-        <article class="message is-success">
-            <div class="message-header">
+        <div class="block">
+            <p class="is-size-6">服务器IP会不定时变化（运营商可恶），这里提供最新的IP，建议使用 <strong>「IP:端口」</strong> 的形式连接服务器！</p>
+        </div>
+        <div class="box">
+            <div class="block">
                 <div class="tags has-addons">
                     <span class="tag">当前服务器地址</span>
                     <span class="tag is-primary">建议使用</span>
                 </div>
-            </div>
-            <div class="message-body">
                 <strong>{{ .ip }}:{{ .port }}</strong>
             </div>
-        </article>
-        <div class="box">
-            <blockquote>或使用</blockquote>
-            <strong>nas.liasica.com:8211</strong>
+
+            <div class="block is-size-7">
+                <p>或使用（<span class="has-text-danger">不建议</span>，IP变动时因为DNS缓存有可能会有5-10分钟无法连接）</p>
+                <p>nas.liasica.com:8211</p>
+            </div>
         </div>
     </div>
 </section>

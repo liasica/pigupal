@@ -2,4 +2,4 @@ module pigupal
 
 go 1.21
 
-require github.com/gorcon/rcon v1.3.4 // indirect
+require github.com/joho/godotenv v1.5.1 // indirect

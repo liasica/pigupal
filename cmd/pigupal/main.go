@@ -6,35 +6,27 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"time"
+	"os"
+	"strings"
 
-	"github.com/gorcon/rcon"
+	"github.com/joho/godotenv"
+
+	"pigupal"
 )
 
 func main() {
-	// pigupal.StartHttpServer()
-	conn, err := rcon.Dial("10.10.10.20:25575", "XXXXXXXXXXX", func(s *rcon.Settings) {
-		rcon.SetDeadline(time.Second * 60)
-	})
+	// reading env file
+	err := godotenv.Load()
 	if err != nil {
-		log.Fatal(err)
-	}
-	defer func(conn *rcon.Conn) {
-		_ = conn.Close()
-	}(conn)
-
-	// go func() {
-	// 	for {}
-	// }()
-
-	// packet := rcon.NewPacket(rcon.SERVERDATA_EXECCOMMAND, rcon.SERVERDATA_EXECCOMMAND_ID, "ShowPlayers")
-
-	response, err := conn.Execute("ShowPlayers")
-	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Can not find .env file", err)
 	}
 
-	fmt.Println(response)
+	if strings.ToUpper(os.Getenv("DYNAMIC_IP")) == "TRUE" {
+		go pigupal.StartIpClient()
+	}
+
+	go pigupal.StartHttpServer()
+
+	select {}
 }
