@@ -13,13 +13,14 @@ import (
 	"github.com/joho/godotenv"
 
 	"pigupal"
+	"pigupal/pkg/rcon"
 )
 
 func main() {
 	// reading env file
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Can not find .env file", err)
+		log.Fatalf("can not find .env file: %v", err)
 	}
 
 	if strings.ToUpper(os.Getenv("DYNAMIC_IP")) == "TRUE" {
@@ -27,6 +28,12 @@ func main() {
 	}
 
 	go pigupal.StartHttpServer()
+
+	r := rcon.New(os.Getenv("RCON_SERVER"), os.Getenv("RCON_PASSWORD"))
+	err = r.Connect()
+	if err != nil {
+		log.Fatalf("connect rcon server failed: %v", err)
+	}
 
 	select {}
 }

@@ -33,13 +33,12 @@ func getIp() {
 		log.Printf("Get IP failed: %v", err)
 	} else {
 		CurrentIP = string(b)
-		log.Printf("Got IP: %s", b)
 	}
 }
 
 func StartIpClient() {
 	ipserver = os.Getenv("IP_SERVER")
-	log.Println("Using [IP_SERVER]:", ipserver)
+	log.Println("using [IP_SERVER]:", ipserver)
 
 	ticker := time.NewTicker(time.Second * 5)
 	for range ticker.C {
