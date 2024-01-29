@@ -78,6 +78,7 @@ func (c *Client) Read() ([]byte, error) {
 	buffered := r.Buffered()
 	if buffered < total {
 		x, _ := r.Peek(buffered)
+		log.Printf("need size: %d, real size: %d", total, buffered)
 		log.Printf("%s", x)
 		// log.Println(r.Discard(buffered))
 		return nil, ErrorIncompletePacket

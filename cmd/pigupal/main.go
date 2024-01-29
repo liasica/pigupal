@@ -13,7 +13,6 @@ import (
 	"github.com/joho/godotenv"
 
 	"pigupal"
-	"pigupal/pkg/rcon"
 )
 
 func main() {
@@ -29,11 +28,11 @@ func main() {
 
 	go pigupal.StartHttpServer()
 
-	r := rcon.New(os.Getenv("RCON_SERVER"), os.Getenv("RCON_PASSWORD"))
-	err = r.Connect()
-	if err != nil {
-		log.Fatalf("connect rcon server failed: %v", err)
-	}
+	// r := rcon.New(os.Getenv("RCON_SERVER"), os.Getenv("RCON_PASSWORD"))
+	// err = r.Connect()
+	// if err != nil {
+	// 	log.Fatalf("connect rcon server failed: %v", err)
+	// }
 
 	select {}
 }

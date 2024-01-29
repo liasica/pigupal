@@ -5,9 +5,15 @@
 
 package pigupal
 
-import _ "embed"
+import (
+	"embed"
+	_ "embed"
+)
 
 var (
 	//go:embed templates/index.html
 	TemplateIndex string
+
+	//go:embed assets/images/*
+	Images embed.FS
 )
