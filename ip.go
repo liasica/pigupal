@@ -9,16 +9,11 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"os"
 	"time"
 )
 
-var (
-	ipserver string
-)
-
-func getIp() {
-	res, err := http.Get(ipserver)
+func getIp(addr string) {
+	res, err := http.Get(addr)
 	if err != nil {
 		log.Println(err)
 	}
@@ -36,12 +31,11 @@ func getIp() {
 	}
 }
 
-func StartIpClient() {
-	ipserver = os.Getenv("IP_SERVER")
-	log.Println("using [IP_SERVER]:", ipserver)
+func StartIpClient(addr string) {
+	log.Println("using [IP_SERVER]:", addr)
 
 	ticker := time.NewTicker(time.Second * 5)
 	for range ticker.C {
-		getIp()
+		getIp(addr)
 	}
 }

@@ -12,11 +12,22 @@ import (
 	"net/http"
 )
 
+type IndexData struct {
+	Hi         string
+	Ip         string
+	Port       string
+	Backups    []*Backup
+	BackupsLen int
+}
+
 func index(w http.ResponseWriter, r *http.Request) {
-	_ = indexTmpl.Execute(w, map[string]string{
-		"hi":   "Hi~ ˘¿˘",
-		"ip":   CurrentIP,
-		"port": CurrentPort,
+	backups := LastBackups()
+	_ = indexTmpl.Execute(w, &IndexData{
+		Hi:         "Hi~ ˘¿˘",
+		Ip:         CurrentIP,
+		Port:       CurrentPort,
+		Backups:    backups,
+		BackupsLen: len(backups),
 	})
 }
 

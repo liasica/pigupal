@@ -7,7 +7,6 @@ package main
 
 import (
 	"log"
-	"os"
 	"strings"
 
 	"github.com/joho/godotenv"
@@ -15,6 +14,9 @@ import (
 	"pigupal"
 )
 
+// palworld configs
+// https://tech.palworldgame.com/optimize-game-balance
+// https://pal-conf.bluefissure.com/
 func main() {
 	// reading env file
 	err := godotenv.Load()
@@ -22,13 +24,15 @@ func main() {
 		log.Fatalf("can not find .env file: %v", err)
 	}
 
-	if strings.ToUpper(os.Getenv("DYNAMIC_IP")) == "TRUE" {
-		go pigupal.StartIpClient()
+	pigupal.Initialize()
+
+	if strings.ToUpper(pigupal.CFG.IpServer) != "" {
+		go pigupal.StartIpClient(pigupal.CFG.IpServer)
 	}
 
 	go pigupal.StartHttpServer()
 
-	// r := rcon.New(os.Getenv("RCON_SERVER"), os.Getenv("RCON_PASSWORD"))
+	// r := rcon.New(pigupal.CFG.RconServer, pigupal.CFG.RconPassword)
 	// err = r.Connect()
 	// if err != nil {
 	// 	log.Fatalf("connect rcon server failed: %v", err)

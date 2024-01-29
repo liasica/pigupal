@@ -14,3 +14,6 @@ slave:
 .PHONY: master
 master:
 	$(call build,pigupal)
+	ssh -o StrictHostKeyChecking=no root@10.10.10.20 'systemctl stop pigupal'
+	scp build/pigupal root@10.10.10.20:/root/palworld
+	ssh -o StrictHostKeyChecking=no root@10.10.10.20 'systemctl start pigupal'
