@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.font.im" crossorigin>
     <link href="https://fonts.font.im/css2?family=Courier+Prime&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
-        body {
+        .backups {
             font-family: 'Courier Prime', monospace;
         }
     </style>
@@ -57,7 +57,7 @@
                 <span class="tag is-warning">最近{{ .BackupsLen }}条</span>
             </div>
             {{ range $i, $t := .Backups }}
-                <ul>
+                <ul class="backups">
                     <li class="{{if (gt $i 0)}}mt-1{{end}}">
                         <div class="tags has-addons">
                             <span class="tag is-dark">{{$t.Name}}</span>
